@@ -9,7 +9,7 @@ namespace Exam1
 {
     public class Tree
     {
-        public Node Root {  get; set; }
+        public Node Root { get; set; }
         public Tree() { }
         //public Tree(Node Root)
         //{
@@ -51,20 +51,39 @@ namespace Exam1
 
 
 
-        public string GetTreeString()
+        public string GetTreeStringInOrder()
         {
             if (Root == null)
                 return "Empty tree";
-            return "Root = "+Root.GetNodeStringWithoutChild() + GetTreeString(Root.LeftSun, "Left", 1) + GetTreeString(Root.RightSun,"Right",1);
+            return GetTreeStringInOrder(Root.LeftSun, "Left", 1) + "\nRoot = " + Root.GetNodeStringWithoutChild() + GetTreeStringInOrder(Root.RightSun, "Right", 1);
         }
-        private string GetTreeString(Node node ,string side,int tabs)
+        private string GetTreeStringInOrder(Node node, string side, int tabs)
         {
             if (node == null)
                 return "";
             string str = "\n";
             for (int i = 0; i < tabs; i++)
                 str += "-";
-            return str +side +" = "+ node.GetNodeStringWithoutChild() + GetTreeString(node.LeftSun,"Left", tabs+1) + GetTreeString(node.RightSun,"Right", tabs + 1);
+            return GetTreeStringInOrder(node.LeftSun, "Left", tabs + 1) + str + side + " = " + node.GetNodeStringWithoutChild() + GetTreeStringInOrder(node.RightSun, "Right", tabs + 1);
+        }
+
+
+
+        public string GetTreeStringPreOrder()
+        {
+            if (Root == null)
+                return "Empty tree";
+            return "Root = " + Root.GetNodeStringWithoutChild() + GetTreeStringPreOrder(Root.LeftSun, "Left", 1) + GetTreeStringPreOrder(Root.RightSun, "Right", 1);
+        }
+        private string GetTreeStringPreOrder(Node node, string side, int tabs)
+        {
+            if (node == null)
+                return "";
+            string str = "\n";
+            for (int i = 0; i < tabs; i++)
+                str += "-";
+            return str + side + " = " + node.GetNodeStringWithoutChild() + GetTreeStringPreOrder(node.LeftSun, "Left", tabs + 1) + GetTreeStringPreOrder(node.RightSun, "Right", tabs + 1);
         }
     }
+}
 }
