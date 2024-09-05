@@ -8,7 +8,7 @@ namespace Exam1
         static void Main(string[] args)
         {
             Console.WriteLine("********************* Importing defenceStrategiesBalanced.json And Creating Tree ***********************");
-            List<Node> nodes = ReadFromJson<List<Node>>(@"C:\Users\INTERNET\Downloads\defenceStrategiesBalanced.json");
+            List<Node> nodes = Service.ReadFromJson<List<Node>>(@"C:\Users\INTERNET\Downloads\defenceStrategiesBalanced.json");
             Tree tree = new Tree();
             foreach (Node node in nodes)
             {
@@ -22,16 +22,14 @@ namespace Exam1
             Console.WriteLine(tree.GetTreeStringPreOrder());
 
             Console.WriteLine("********************* Importing threats.json ***********************");
+            List<Treat> treats = Service.ReadFromJson<List<Treat>>(@"C:\Users\INTERNET\Downloads\threats.json");
+            Console.WriteLine(treats.Count + " treats imported");
 
-            int i=0; int j=0;   
-            //var agents = await ReadFromJsonAsync<List<Agent>>();
+
+
         }
 
-        public static T ReadFromJson<T>(string filePath)
-        {
-            string jsonString = File.ReadAllText(filePath);
-            return JsonSerializer.Deserialize<T>(jsonString);
-        }
+        
 
     }
 }

@@ -48,8 +48,20 @@ namespace Exam1
             }
         }
 
-
-
+        public Node? GetNodeBySeverity(int severity)
+        {
+            return GetNodeBySeverity(Root, severity);
+        }
+        public Node? GetNodeBySeverity(Node? node,int severity)
+        {
+            if (node == null)
+                return null;
+            if (node.MaxSeverity < severity)
+                return GetNodeBySeverity( node.RightSun,severity);
+            if (node.MinSeverity > severity)
+                return GetNodeBySeverity(node.LeftSun, severity);
+            return node;
+        }
 
         public string GetTreeStringInOrder()
         {
@@ -81,9 +93,9 @@ namespace Exam1
                 return "";
             string str = "\n";
             for (int i = 0; i < tabs; i++)
-                str += "-";
+                str += " --- " ;
             return str + side + " = " + node.GetNodeStringWithoutChild() + GetTreeStringPreOrder(node.LeftSun, "Left", tabs + 1) + GetTreeStringPreOrder(node.RightSun, "Right", tabs + 1);
         }
     }
 }
-}
+
