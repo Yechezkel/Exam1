@@ -63,6 +63,10 @@ namespace Exam1
             return node;
         }
 
+
+
+
+
         public string GetTreeStringInOrder()
         {
             if (Root == null)
@@ -75,10 +79,18 @@ namespace Exam1
                 return "";
             string str = "\n";
             for (int i = 0; i < tabs; i++)
-                str += "-";
+                str += " --- ";
             return GetTreeStringInOrder(node.LeftSun, "Left", tabs + 1) + str + side + " = " + node.GetNodeStringWithoutChild() + GetTreeStringInOrder(node.RightSun, "Right", tabs + 1);
         }
-
+        public int GetMin()
+        {
+            if (Root==null)
+                return int.MinValue;
+            Node temp = Root;
+            while (temp.LeftSun != null)
+                temp = temp.LeftSun;
+            return temp.MinSeverity;
+        }
 
 
         public string GetTreeStringPreOrder()
