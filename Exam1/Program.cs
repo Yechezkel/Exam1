@@ -7,6 +7,7 @@ namespace Exam1
     {
         static void Main(string[] args)
         {
+            // ייבוא קובץ הג'ייסון של ההגנות
             Console.WriteLine("********************* Importing defenceStrategiesBalanced.json And Creating tree ***********************");
             List<Node> nodes = Service.ReadFromJson<List<Node>>(@"C:\Users\INTERNET\Downloads\defenceStrategiesBalanced.json");
             Tree tree = new Tree();
@@ -15,15 +16,24 @@ namespace Exam1
                 tree.Insert(node);
             }
             Thread.Sleep(4000);
-            Console.WriteLine("\n********************* Printing In Order ***********************");
+
+            // InOrder printing
+            Console.WriteLine("\n********************* Printing InOrder ***********************");
             Console.WriteLine(tree.GetTreeStringInOrder());
             Thread.Sleep(4000);
-            Console.WriteLine("\n********************* Printing Pre Order **********************");
+
+            // PreOrder printing
+            Console.WriteLine("\n********************* Printing PreOrder **********************");
             Console.WriteLine(tree.GetTreeStringPreOrder());
             Thread.Sleep(4000);
+
+            // ייבוא קובץ הג'ייסון של ההתקפות
             Console.WriteLine("\n********************* Importing threats.json ***********************");
             List<Treat> treats = Service.ReadFromJson<List<Treat>>(@"C:\Users\INTERNET\Downloads\threats.json");
             Console.WriteLine(treats.Count + " treats imported");
+
+            //ניהול ההתקפות וההגנות
+            Console.WriteLine("\n********************* Managing Threats ***********************");
             int i = 1;
             foreach (Treat t in treats)
             {
@@ -46,6 +56,10 @@ namespace Exam1
                     }
                 i++;
             }
+
+            //סוף
+            Console.WriteLine("\n********************* End ***********************");
+
         }
     }
 }

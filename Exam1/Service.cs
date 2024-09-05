@@ -9,11 +9,12 @@ namespace Exam1
 {
     public class Service
     {
+        //O(n) ממירה ג'ייסון לרשימה
         public static T ReadFromJson<T>(string filePath)
         {
             string jsonString = File.ReadAllText(filePath);
             return JsonSerializer.Deserialize<T>(jsonString);
         }
-        //public static void StartAttack() 
+        
     }
 }

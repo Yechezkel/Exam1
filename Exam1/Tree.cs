@@ -7,14 +7,15 @@ using System.Xml.Linq;
 
 namespace Exam1
 {
+    //מודל של עץ בינארי
     public class Tree
     {
         public Node Root { get; set; }
+
+        //בנאי
         public Tree() { }
-        //public Tree(Node Root)
-        //{
-        //    this.Root = Root;
-        //}
+        
+        //מכניסה ערכים לעץ הסיבוכיות היא הגובה של העץ
         public void Insert(Node node)
         {
             if (Root == null)
@@ -48,11 +49,14 @@ namespace Exam1
             }
         }
 
+        //מקבלת ערך של חומרה ומחזירה את החולייה המתאימה, אם לא קיימת כזו תחזיר את אובייקט האפס
+        // הסיבוכיות היא הגובה של העץ
         public Node? GetNodeBySeverity(int severity)
         {
             return GetNodeBySeverity(Root, severity);
         }
-        public Node? GetNodeBySeverity(Node? node,int severity)
+        //פונקציית עזר רקורסיבית של הפונקציה הקודמת
+        private Node? GetNodeBySeverity(Node? node,int severity)
         {
             if (node == null)
                 return null;
@@ -66,13 +70,15 @@ namespace Exam1
 
 
 
-
+        //מחזירה מחרוזת של העץ בסדר תוכי
+        //o(n)
         public string GetTreeStringInOrder()
         {
             if (Root == null)
                 return "Empty tree";
             return GetTreeStringInOrder(Root.LeftSun, "Left", 1) + "\nRoot = " + Root.GetNodeStringWithoutChild() + GetTreeStringInOrder(Root.RightSun, "Right", 1);
         }
+        //פונקציית עזר רקורסיבית של הפונקציה הקודמת
         private string GetTreeStringInOrder(Node node, string side, int tabs)
         {
             if (node == null)
@@ -82,6 +88,10 @@ namespace Exam1
                 str += " --- ";
             return GetTreeStringInOrder(node.LeftSun, "Left", tabs + 1) + str + side + " = " + node.GetNodeStringWithoutChild() + GetTreeStringInOrder(node.RightSun, "Right", tabs + 1);
         }
+
+
+        //מחזירה את הערך חומרה הכי קטן בעץ
+        // הסיבוכיות היא הגובה של העץ
         public int GetMin()
         {
             if (Root==null)
@@ -92,13 +102,15 @@ namespace Exam1
             return temp.MinSeverity;
         }
 
-
+        //מחזירה מחרוזת של העץ בסדר ראשוני
+        //o(n)
         public string GetTreeStringPreOrder()
         {
             if (Root == null)
                 return "Empty tree";
             return "Root = " + Root.GetNodeStringWithoutChild() + GetTreeStringPreOrder(Root.LeftSun, "Left", 1) + GetTreeStringPreOrder(Root.RightSun, "Right", 1);
         }
+        //פונקציית עזר רקורסיבית של הפונקציה הקודמת
         private string GetTreeStringPreOrder(Node node, string side, int tabs)
         {
             if (node == null)
